@@ -1,5 +1,4 @@
-ENDPOINT ?= mainnet.eth.streamingfast.io:443
-GRAPH_CONFIG ?= ../graph-node-dev/config/graphman.toml
+ENDPOINT ?= eth.firehose.pinax.network:9000
 STOP_BLOCK ?= +10
 
 .PHONY: build
@@ -28,6 +27,7 @@ package: build
 
 .PHONE: deploy_local
 deploy_local: package
+	graph codegen
 	graph build --ipfs http://localhost:5001 subgraph.yaml
 	graph create block_meta --node http://127.0.0.1:8020
 	graph deploy --node http://127.0.0.1:8020 --ipfs http://127.0.0.1:5001 --version-label v0.0.1 block_meta subgraph.yaml

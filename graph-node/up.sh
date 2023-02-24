@@ -30,7 +30,10 @@ main() {
 }
 
 prepare() {
-  if [[ -z "$ETH_MAINNET_RPC" || -z "$SUBSTREAMS_ENDPOINT" || -z "$SUBSTREAMS_API_TOKEN" ]]; then
+  if [[ -z "$ETH_MAINNET_RPC" ]]; then
+    export ETH_MAINNET_RPC="https://eth.rpc.pinax.network:8545"
+  fi
+  if [[ -z "$SUBSTREAMS_ENDPOINT" || -z "$SUBSTREAMS_API_TOKEN" ]]; then
     echo "Your environment is not corrrectly configured to launch Docker Compose configuration."
     echo "Some of the required environment variables are unset or empty:"
     echo " - ETH_MAINNET_RPC (Current value '${ETH_MAINNET_RPC}', if local RPC node via 'localhost' like 'http://localhost:8545', use 'http://host-gateway:8545')"

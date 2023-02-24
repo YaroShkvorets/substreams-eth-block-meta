@@ -5,3 +5,4 @@
 buf.gen.yaml
 /target
 *.spkg
+generated

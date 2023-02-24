@@ -1,8 +1,8 @@
 version: "3"
 services:
   graph-node:
-    container_name: graph-node-sebm
-    image: graphprotocol/graph-node:canary-6792c9c
+    container_name: graph-node-meta
+    image: graphprotocol/graph-node:v0.30.0-rc.0
     ports:
       - '8000:8000'
       - '8001:8001'
@@ -27,8 +27,10 @@ services:
       ETH_MAINNET_RPC: "${ETH_MAINNET_RPC}"
       SUBSTREAMS_ENDPOINT: "${SUBSTREAMS_ENDPOINT}"
       SUBSTREAMS_API_TOKEN: "${SUBSTREAMS_API_TOKEN}"
+      RUST_BACKTRACE: full
+    restart: "on-failure"
   ipfs:
-    container_name: ipfs-sebm
+    container_name: ipfs-meta
     image: ipfs/kubo:v0.14.0
     ports:
       - "5001:5001"
@@ -37,7 +39,7 @@ services:
       - ./data/ipfs:/data/ipfs
       - ./data/ipfs-export:/export
   postgres:
-    container_name: postgres-sebm
+    container_name: postgres-meta
     image: postgres:14
     ports:
       - "5432:5432"
@@ -55,18 +57,3 @@ services:
       interval: 30s
       timeout: 10s
       retries: 15
-  pgweb:
-    container_name: pgweb-sebm
-    image: sosedoff/pgweb:0.11.12
-    restart: on-failure
-    ports:
-      - "8081:8081"
-    command: ["pgweb", "--bind=0.0.0.0", "--listen=8081", "--binary-codec=hex"]
-    #command: ["pgweb", "--binary-codec=base58"]
-    #command: ["pgweb", "--binary-codec=base64"]
-    links:
-      - postgres:postgres
-    environment:
-      - DATABASE_URL=postgres://graph-node:let-me-in@postgres:5432/graph-node?sslmode=disable
-    depends_on:
-      - postgres
