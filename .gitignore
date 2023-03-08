@@ -6,3 +6,5 @@ buf.gen.yaml
 /target
 *.spkg
 generated
+data/
+*.log
