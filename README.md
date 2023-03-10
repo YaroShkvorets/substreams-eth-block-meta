@@ -14,11 +14,11 @@ Allows you to query information like:
 
 ## Indexing the subgraph locally
 
-- Set env variables
+- Set env variables (generate $PINAX_KEY on https://pinax.network)
 ```
-export SUBSTREAMS_ENDPOINT=https://mainnet.eth.streamingfast.io:443
-export SUBSTREAMS_API_TOKEN=$(curl https://auth.dfuse.io/v1/auth/issue -s --data-binary '{"api_key":"'$STREAMINGFAST_KEY'"}' | jq -r .token)
-export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" // or another Ethereum RPC endpoint
+export SUBSTREAMS_ENDPOINT=https://eth-mar.firehose.pinax.network:9000
+export SUBSTREAMS_API_TOKEN=$(curl https://auth.pinax.network/v1/auth/issue -s --data-binary '{"api_key":"'$PINAX_KEY'"}' | jq -r .token)
+export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" // or another Ethereum RPC or EVMX endpoint
 ```
 - Start graph node
 ```
