@@ -18,7 +18,7 @@ Allows you to query information like:
 ```
 export SUBSTREAMS_ENDPOINT=https://mainnet.eth.streamingfast.io:443
 export SUBSTREAMS_API_TOKEN=$(curl https://auth.dfuse.io/v1/auth/issue -s --data-binary '{"api_key":"'$STREAMINGFAST_KEY'"}' | jq -r .token)
-export ETH_MAINNET_RPC="https://eth.rpc.pinax.network:8545" // or another Ethereum RPC endpoint
+export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" // or another Ethereum RPC endpoint
 ```
 - Start graph node
 ```
