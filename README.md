@@ -18,7 +18,7 @@ Allows you to query information like:
 ```
 export SUBSTREAMS_ENDPOINT=https://eth-mar.firehose.pinax.network:9000
 export SUBSTREAMS_API_TOKEN=$(curl https://auth.pinax.network/v1/auth/issue -s --data-binary '{"api_key":"'$PINAX_KEY'"}' | jq -r .token)
-export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" // or another Ethereum RPC or EVMX endpoint
+export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" # or another Ethereum RPC or EVMX endpoint
 ```
 - Start graph node
 ```
