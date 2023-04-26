@@ -20,7 +20,7 @@ export SUBSTREAMS_ENDPOINT=https://eth-mar.firehose.pinax.network:9000
 export SUBSTREAMS_API_TOKEN=$(curl https://auth.pinax.network/v1/auth/issue -s --data-binary '{"api_key":"'$PINAX_KEY'"}' | jq -r .token)
 export ETH_MAINNET_RPC="http://eth-evmr73.mar.eosn.io:8080" # or another Ethereum RPC or EVMX endpoint
 ```
-- Start graph node
+- Start graph node and wait until all 4 containers start up
 ```
 cd graph-node
 ./up.sh     // script that starts docker containers needed to run graph node
@@ -31,7 +31,7 @@ make deploy_local
 ```
 
 If everything went well you should see messages like `Applying 3 entity operation(s), block_hash: 0xd4e56...`.
-If not, you can try to restart Docker containers
+If not and you get ECONNRESET error, wait a bit more until graph-node fully starts up, and try again.
 
 At that point you can open http://127.0.0.1:8000/subgraphs/name/block_meta/graphql and run a query like
 ```
